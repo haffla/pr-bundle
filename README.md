@@ -4,9 +4,25 @@ Batch-merge multiple GitHub PRs into a single branch. Useful for combining depen
 
 ## Installation
 
-### Download a binary
+### Quick install
 
-Grab the latest release for your platform from the [releases page](https://github.com/haffla/merge-prs/releases).
+```sh
+# macOS Apple Silicon
+gh release download --repo haffla/merge-prs --pattern 'merge-prs_darwin_arm64*' --output - | tar xz
+
+# macOS Intel
+gh release download --repo haffla/merge-prs --pattern 'merge-prs_darwin_amd64*' --output - | tar xz
+
+# Linux x86_64
+gh release download --repo haffla/merge-prs --pattern 'merge-prs_linux_amd64*' --output - | tar xz
+
+# Linux ARM
+gh release download --repo haffla/merge-prs --pattern 'merge-prs_linux_arm64*' --output - | tar xz
+
+# Then move it onto your PATH
+chmod +x merge-prs
+sudo mv merge-prs /usr/local/bin/
+```
 
 ### Install with Go
 
