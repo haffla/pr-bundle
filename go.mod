@@ -1,4 +1,4 @@
-module github.com/haffla/merge-prs
+module github.com/haffla/pr-bundle
 
 go 1.25
 

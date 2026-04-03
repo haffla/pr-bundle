@@ -1,4 +1,4 @@
-# merge-prs
+# pr-bundle
 
 Batch-merge multiple GitHub PRs into a single branch. Useful for combining dependabot PRs and deploying them together to a staging environment.
 
@@ -8,26 +8,26 @@ Batch-merge multiple GitHub PRs into a single branch. Useful for combining depen
 
 ```sh
 # macOS Apple Silicon
-gh release download --repo haffla/merge-prs --pattern 'merge-prs_darwin_arm64*' --output - | tar xz
+gh release download --repo haffla/pr-bundle --pattern 'pr-bundle_darwin_arm64*' --output - | tar xz
 
 # macOS Intel
-gh release download --repo haffla/merge-prs --pattern 'merge-prs_darwin_amd64*' --output - | tar xz
+gh release download --repo haffla/pr-bundle --pattern 'pr-bundle_darwin_amd64*' --output - | tar xz
 
 # Linux x86_64
-gh release download --repo haffla/merge-prs --pattern 'merge-prs_linux_amd64*' --output - | tar xz
+gh release download --repo haffla/pr-bundle --pattern 'pr-bundle_linux_amd64*' --output - | tar xz
 
 # Linux ARM
-gh release download --repo haffla/merge-prs --pattern 'merge-prs_linux_arm64*' --output - | tar xz
+gh release download --repo haffla/pr-bundle --pattern 'pr-bundle_linux_arm64*' --output - | tar xz
 
 # Then move it onto your PATH
-chmod +x merge-prs
-sudo mv merge-prs /usr/local/bin/
+chmod +x pr-bundle
+sudo mv pr-bundle /usr/local/bin/
 ```
 
 ### Install with Go
 
 ```
-go install github.com/haffla/merge-prs@latest
+go install github.com/haffla/pr-bundle@latest
 ```
 
 ### Prerequisites
@@ -37,13 +37,13 @@ go install github.com/haffla/merge-prs@latest
 ## Usage
 
 ```
-merge-prs [OPTIONS] [PR_NUMBER ...]
+pr-bundle [OPTIONS] [PR_NUMBER ...]
 ```
 
 ### Merge specific PRs
 
 ```
-merge-prs 721 720 719
+pr-bundle 721 720 719
 ```
 
 ### Interactive mode
@@ -51,19 +51,19 @@ merge-prs 721 720 719
 Run without arguments to get a multi-select picker of open dependabot PRs:
 
 ```
-merge-prs
+pr-bundle
 ```
 
 Use `--all` to include PRs from all authors:
 
 ```
-merge-prs --all
+pr-bundle --all
 ```
 
 ### Options
 
 ```
---branch NAME    Custom branch name (default: merge-prs/<timestamp>)
+--branch NAME    Custom branch name (default: pr-bundle/<timestamp>)
 --all            Show all open PRs in interactive mode (default: dependabot only)
 --target BRANCH  Remote branch for push prompt (default: staging)
 ```

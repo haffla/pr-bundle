@@ -1,7 +1,7 @@
 version: 2
 
 builds:
-  - binary: merge-prs
+  - binary: pr-bundle
     env:
       - CGO_ENABLED=0
     goos:

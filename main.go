@@ -39,7 +39,7 @@ func main() {
 	run("git", "fetch", "origin")
 
 	if branchName == "" {
-		branchName = fmt.Sprintf("merge-prs/%s", time.Now().Format("20060102-150405"))
+		branchName = fmt.Sprintf("pr-bundle/%s", time.Now().Format("20060102-150405"))
 	}
 
 	fmt.Printf("Creating branch '%s' from origin/main...\n", branchName)
@@ -136,22 +136,22 @@ func parseArgs() {
 }
 
 func printUsage() {
-	fmt.Print(`Usage: merge-prs [OPTIONS] [PR_NUMBER ...]
+	fmt.Print(`Usage: pr-bundle [OPTIONS] [PR_NUMBER ...]
 
 Merge multiple PRs into a new branch. When no PR numbers are given,
 opens an interactive picker.
 
 Options:
-  --branch NAME    Custom branch name (default: merge-prs/<timestamp>)
+  --branch NAME    Custom branch name (default: pr-bundle/<timestamp>)
   --all            Show all open PRs in interactive mode (default: dependabot only)
   --target BRANCH  Remote branch for push prompt (default: staging)
   -h, --help       Show this help message
 
 Examples:
-  merge-prs 721 720 719
-  merge-prs --branch staging-deps 721 720
-  merge-prs                        # interactive mode
-  merge-prs --all                  # interactive, all authors
+  pr-bundle 721 720 719
+  pr-bundle --branch staging-deps 721 720
+  pr-bundle                        # interactive mode
+  pr-bundle --all                  # interactive, all authors
 `)
 }
 
