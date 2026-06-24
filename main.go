@@ -103,6 +103,30 @@ summary:
 		fmt.Println("Not pushed. You can push later with:")
 		fmt.Printf("  git push origin %s:%s\n", branchName, targetBranch)
 	}
+
+	if len(merged) == 0 {
+		return
+	}
+
+	fmt.Print("\nCreate pull request against main? [y/N] ")
+	scanner.Scan()
+	if !strings.EqualFold(strings.TrimSpace(scanner.Text()), "y") {
+		return
+	}
+
+	run("git", "push", "origin", branchName)
+
+	var body strings.Builder
+	body.WriteString("Bundled PRs:\n\n")
+	for _, m := range merged {
+		body.WriteString("- " + m + "\n")
+	}
+
+	run("gh", "pr", "create",
+		"--base", "main",
+		"--head", branchName,
+		"--title", "Bundled PRs "+time.Now().Format("2006-01-02"),
+		"--body", body.String())
 }
 
 func parseArgs() {
